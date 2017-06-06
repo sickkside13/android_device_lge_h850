@@ -23,7 +23,7 @@ DEVICE_PATH := device/lge/h850
 TARGET_OTA_ASSERT_DEVICE := g5,h1,h850
 
 # Kernel
-TARGET_KERNEL_CONFIG := lineageos_h850_defconfig
+TARGET_KERNEL_CONFIG := h850_defconfig
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop

@@ -1,4 +1,4 @@
-#
+
 # Copyright 2016 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,16 +14,22 @@
 # limitations under the License.
 #
 
-# Inherit from those products. Most specific first.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
++LOCAL_PATH := device/lge/h850
 
-# Inherit from h815 device
-$(call inherit-product, device/lge/h850/device.mk)
+# Get non-open-source specific aspects
+$(call inherit-product, vendor/lge/h850/h850-vendor.mk)
 
-# Set those variables here to overwrite the inherited values.
-PRODUCT_DEVICE := h850
-PRODUCT_NAME := full_h850
-PRODUCT_BRAND := lge
-PRODUCT_MODEL := LG-H850
-PRODUCT_MANUFACTURER := LGE
+# common g5
+$(call inherit-product, device/lge/g5-common/g5.mk)
+
+# Bluetooth
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/bluetooth/bt_vendor.conf:system/etc/bluetooth/bt_vendor.conf
+
+# Sensors
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sensors/sensor_def_h1_tmo_us.conf:system/etc/sensors/sensor_def_variable.conf
+
+# WiFi Calibration
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/wifi/bcmdhd.cal:system/etc/wifi/bcmdhd.cal
